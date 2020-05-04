@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>git基本指令</title>
+    <url>/2020/05/04/git%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<p><strong>提交文件</strong></p>
+<p>初始化 Git <code>git init</code> </p>
+<p>把修改和新增的文件提交到暂存区 <code>git add .</code></p>
+<p>提交暂存区的文件到仓库 <code>git commit -m &quot;对提交的描述&quot;</code></p>
+<p>查看文件状态 <code>git status</code>：</p>
+<ul>
+<li>红色：新建文件、文件内容被改动、文件被删除</li>
+<li>绿色：在暂存区等待被 commit</li>
+<li>working tree clean：已经 commit 或者文档没有被改动</li>
+</ul>
+<hr>
+<p><strong>版本回退</strong></p>
+<p>查看提交历史 <code>git log</code></p>
+<p>查看命令历史 <code>git reflog</code></p>
+<p>回退到上一个版本（就是上一次 commit 前的状态）<code>git reset --hard HEAD^</code></p>
+<blockquote>
+<p>^ 表示上一个版本，^^ 表示上上一个版本依次类推</p>
+</blockquote>
+<p>回退到上一个指定的版本 <code>git reset --hard commit_id</code></p>
+<blockquote>
+<p>commit_id：使用 git log 查看</p>
+</blockquote>
+<hr>
+<p><strong>远程仓库</strong></p>
+<blockquote>
+<p>以 Github 为例，配置 Github <a href="https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416" target="_blank" rel="noopener">廖雪峰 Git 教程</a></p>
+</blockquote>
+<p>配置密钥创建远程仓库后，关联远程仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin git@你的 github 地址/仓库名.git</span><br></pre></td></tr></table></figure>
+
+<p>推送到远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以后想要推送到远程仓库只要 <code>git commit -m &quot;msg&quot;</code> 后 <code>git push</code> 就可以</p>
+</blockquote>
+<p>克隆仓库文件到本地</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:xxx/xxx.git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>分支操作</strong></p>
+<blockquote>
+<p>master 是主分支，公司一般用于上线项目。而平常提交代码一般会在另外新建分支进行提交</p>
+</blockquote>
+<p>查看分支：<code>git branch</code></p>
+<p>创建分支：<code>git branch &lt;name&gt;</code></p>
+<p>切换分支：<code>git checkout &lt;name&gt;</code>或者<code>git switch &lt;name&gt;</code></p>
+<p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code>或者<code>git switch -c &lt;name&gt;</code></p>
+<p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
+<hr>
+<p><strong>标签管理</strong></p>
+<p>命令<code>git tag &lt;tagname&gt;</code> 用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个commit id；</p>
+<p>命令<code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息；</p>
+<p>命令<code>git tag</code>可以查看所有标签。</p>
+<p>操作标签：</p>
+<ul>
+<li>命令<code>git push origin</code>可以推送一个本地标签；</li>
+<li>命令<code>git push origin --tags</code>可以推送全部未推送过的本地标签；</li>
+<li>命令<code>git tag -d &lt;tagname&gt;</code>可以删除一个本地标签；</li>
+<li>命令<code>git push origin :refs/tags/&lt;tagname&gt;</code>可以删除一个远程标签。</li>
+</ul>
+<hr>
+<blockquote>
+<p>详细内容 <a href="https://www.liaoxuefeng.com/wiki/896043488029600/896827951938304" target="_blank" rel="noopener">廖雪峰 Git 教程</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>计算机软件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo 创建博客踩的坑</title>
     <url>/2020/05/03/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E7%9A%84%E5%9D%91/</url>
     <content><![CDATA[<p>​        第一次写博客那就吐槽一下用 hexo 创建博客踩的坑吧</p>
