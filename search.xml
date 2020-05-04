@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>git基本指令</title>
+    <title>git 基本指令</title>
     <url>/2020/05/04/git%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<p><strong>提交文件</strong></p>
 <p>初始化 Git <code>git init</code> </p>
