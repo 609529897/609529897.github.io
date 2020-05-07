@@ -394,7 +394,7 @@ state(store)：存储数据的地方
 
 dispatch 是派发的事件
 
-123456789import &#123; createStore &#125; from 
+123456789import &#123; createStore &#125; from &#39;redux&#39;&#x2F;&#x2F; reducerconst counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;,
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -548,7 +548,14 @@ dispatch 是派发的事件
 查看文件状态 git status：
 
 红色：新建文件、文件内容被改动、文件被删除
-绿色：在暂存区等待被 com
+绿色：在暂存区等待被 commit
+working tree clean：已经 commit 或者文档没有被改动
+
+
+版本回退
+查看提交历史 git log
+查看命令历史 git reflog
+回退到上一个版本（就是上一次 co
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -697,8 +704,10 @@ dispatch 是派发的事件
           
           ​        第一次写博客那就吐槽一下用 hexo 创建博客踩的坑吧
 ​        这尼玛如果在 source/_posts 目录下没有 .md 文件是不能 hexo g 创建 .html 静态文件的，废了老半天劲才
-发现。气死我了希望大家别踩我这坑了！（自动创建后有一个 hello_wor
-          ...
+发现。气死我了希望大家别踩我这坑了！（自动创建后有一个 hello_world.md 文件的，但我这人强迫症发作把它
+删了😀）
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/05/03/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E7%9A%84%E5%9D%91/#more" rel="contents">
