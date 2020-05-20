@@ -13,6 +13,132 @@
       </tags>
   </entry>
   <entry>
+    <title>Event Loop</title>
+    <url>/2020/05/20/EventLoop/</url>
+    <content><![CDATA[<h1 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h1><p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
+<ul>
+<li><p>JS 是单线程语言，所以同一时间只能做一件事</p>
+</li>
+<li><p>如果进行异步操作，没有 Event loop 机制程序会一直等着完成异步操作而发生阻塞</p>
+</li>
+<li><p>异步操作：Promise、setTimeout、setInterval</p>
+</li>
+<li><p>可以使用 H5 的 Web Worker 进行多线程操作，但是流行</p>
+</li>
+</ul>
+<p>机制</p>
+<ul>
+<li><p>简言之就是 JS 只有一个主线程，主线程执行完执行栈的任务后去检查异步的任务队列，如果异步事件触发，则将其加到主线程的执行栈。</p>
+</li>
+<li><p>异步操作会放入异步的任务队列</p>
+</li>
+<li><p>异步操作又被分为 <code>宏任务</code> 和 <code>微任务</code> 来执行</p>
+</li>
+</ul>
+<p>任务队列</p>
+<ul>
+<li>宏任务：<code>setInterval</code>、<code>setTimeout</code></li>
+<li>微任务：<code>new Promise</code>、<code>MutaionObserver</code></li>
+</ul>
+<p>执行规则</p>
+<ul>
+<li><p>主线程同步操作 =&gt; 微任务 =&gt; 宏任务</p>
+</li>
+<li><p>第一步执行主线程的同步操作，第二步如果有微任务放入主线程执行没有的话去查看宏任务，最后当主线程和微任务检查和执行完毕后把宏任务放到主线程执行</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redux, react-redux</title>
+    <url>/2020/05/07/redux/</url>
+    <content><![CDATA[<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><ul>
+<li><p>全局状态管理模块</p>
+</li>
+<li><p>管理组件之间传递的数据</p>
+</li>
+</ul>
+<p><strong>三个重要部分</strong></p>
+<ul>
+<li><p><code>action</code></p>
+</li>
+<li><p><code>reducer</code>：进行状态修改</p>
+</li>
+<li><p><code>state(store)</code>：存储数据的地方</p>
+</li>
+</ul>
+<blockquote>
+<p>dispatch 是派发的事件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">import &#123; createStore &#125; from &#39;redux&#39;<br><br>&#x2F;&#x2F; reducer<br>const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;<br>  return state<br>&#125;;<br><br>&#x2F;&#x2F; store<br>const store &#x3D; createStore(counterReducer);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; 如果需要改变一个 reducer 的值，需要使用 dispatch 派发一个 action<br>&#x2F;&#x2F; action 需要两个参数<br>&#x2F;&#x2F; 1. type    需要使用 type 区分对 state 做什么操作<br>&#x2F;&#x2F; 2. payload 传递的数据<br><br>const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;<br>  switch (action.type) &#123;<br>    case &#39;COUNT_ADD&#39;:<br>      return &#123;<br>        ...state, count: state.count + 1<br>      &#125;;<br>    case &#39;COUNT_REDUCE&#39;:<br>      return &#123;<br>        ...state, count: state.count - 1<br>      &#125;;<br>    default:<br>      return state;<br>  &#125;;<br>&#125;;<br><br>const store &#x3D; createStore(counterReducer);<br><br>store.dispatch(&#123;<br>  type: &#39;COUNT_ADD&#39;,<br>  payload: &#123;&#125;<br>&#125;);<br><br>store.dispatch(&#123;<br>  type: &#39;COUNT_REDUCE&#39;,<br>  payload: &#123;&#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用 chrome 插件查看状态</strong></p>
+<ul>
+<li>Redux DevTools</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">const store &#x3D; createStore( <br>    counterReducer<br>    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()<br>);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>使用多个 reducer</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F;使用 combineReducers<br>import &#123; createStore, combineReducers &#125; from &#39;redux&#39;<br><br>const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;<br>  switch (action.type) &#123;<br>    case &#39;COUNT_ADD&#39;:<br>      return &#123;<br>        ...state, count: state.count + 1<br>      &#125;;<br>    case &#39;COUNT_REDUCE&#39;:<br>      return &#123;<br>        ...state, count: state.count - 1<br>      &#125;;<br>    default:<br>      return state;<br>  &#125;;<br>&#125;;<br><br>const postReducer &#x3D; (state &#x3D; &#123; list: [&#123; title: &#39;你好！&#39; &#125;] &#125;, action) &#x3D;&gt; &#123;<br>  switch (action.type) &#123;<br>    case &#39;LOAD_POST&#39;:<br>      return &#123;<br>        ...state, list: action.payload<br>      &#125;;<br>    default:<br>      return state<br>  &#125;;<br>&#125;;<br><br>&#x2F;&#x2F;通过 combineReducers 把多个 reducer 进行合并<br>const rootReducers &#x3D; combineReducers(&#123;<br>  counter: counterReducer,<br>  post: postReducer<br>&#125;);<br><br>const store &#x3D; createStore( <br>    rootReducers,<br>    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()<br>);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>redux 的网络请求</strong></p>
+<blockquote>
+<p>json holder：网站，会提供在线的 API</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> redux 使用 redux-thunk 插件进行网络请求</span><br><span class="hljs-meta">$</span><span class="bash"> yarn add redux-thunk </span><br><span class="hljs-meta">$</span><span class="bash"> yarn add axios</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; 导入需要的插件<br>import &#123; createStore, combineReducers, compose, applyMiddleware &#125; from &#39;redux&#39;<br>import &#123; get &#125; from &#39;axios&#39;<br>import thunk from &#39;redux-thunk&#39;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; 配置 store<br>const store &#x3D; createStore(<br>    rootReducers,<br>    compose(<br>        applyMiddleware(...[thunk])  &#x2F;&#x2F;需要使用的中间件数组<br>    ),<br>    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()<br>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">const getPostsRequest &#x3D; () &#x3D;&gt; &#123;<br>    return get(&#39;https:&#x2F;&#x2F;xxx.com&#x2F;posts&#39;);<br>&#125;;<br><br>store.dispatch(async (dispatch) &#x3D;&gt; &#123;<br>    const res &#x3D; await getPostsRequest();<br>    dispatch(&#123;<br>        type: &#39;LOAD_POST&#39;,<br>        payload: res.data<br>    &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>拆分代码，使其阅读更合理</strong></p>
+<ul>
+<li>在 src 文件夹下创建 actions 文件夹，把所有的 action 文件放在里面</li>
+<li>在 src 文件夹下创建 reducers 文件夹，把所有的 reducer 文件放在里面</li>
+<li>在 src 文件夹下创建 services 文件夹，把所有的关于网络请求得文件放在里面</li>
+<li>在根目录下创建 store.js 文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; src&#x2F;services&#x2F;post_api.js<br>import &#123; get &#125; from &#39;axios&#39;<br><br>export function getPosts() &#123;<br>    return get(&#39;https:&#x2F;&#x2F;xxx.com&#x2F;posts&#39;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; src&#x2F;actions&#x2F;counter_action.js<br>export const countAddAction &#x3D; &#123;<br>    type: &#39;COUNT_ADD&#39;<br>&#125;<br><br>export const countReduceAction &#x3D; &#123;<br>    type: &#39;COUNT_REDUCE&#39;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; src&#x2F;actions&#x2F;post_action.js<br>import &#123; getPosts &#125; from &#39;..&#x2F;services&#x2F;post_api&#39;<br><br>export const loadPostsAction &#x3D; async (dispatch) &#x3D;&gt; &#123;<br>    const res &#x3D; await getPosts();<br>    dispatch(&#123;<br>        type: &#39;LOAD_POSTS&#39;,<br>        payload: res.data<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; src&#x2F;reducers&#x2F;post_reducer.js<br>const postReducer &#x3D; (state &#x3D; &#123; list: [&#123; id: 1, title: &#39;你好！&#39; &#125;] &#125;, action) &#x3D;&gt; &#123;<br>    switch (action.type) &#123;<br>        case &#39;LOAD_POST&#39;:<br>            return &#123;<br>                ...state, list: action.payload<br>            &#125;;<br>        default:<br>            return state<br>    &#125;;<br>&#125;;<br><br>export default postReducer;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; src&#x2F;reducers&#x2F;counter_reducer.js<br>const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;<br>    switch (action.type) &#123;<br>        case &#39;COUNT_ADD&#39;:<br>            return &#123;<br>                ...state, count: state.count + 1<br>            &#125;;<br>        case &#39;COUNT_REDUCE&#39;:<br>            return &#123;<br>                ...state, count: state.count - 1<br>            &#125;;<br>        default:<br>            return state;<br>    &#125;;<br>&#125;;<br><br>export default counterReducer;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; src&#x2F;reducers&#x2F;index.js<br>&#x2F;&#x2F;合并 reducer<br>import &#123; combineReducers &#125; from &#39;redux&#39;<br><br>import counterReducer from &#39;.&#x2F;counter_reducer&#39;<br>import postReducer from &#39;.&#x2F;post_reducer&#39;<br><br>const rootReducers &#x3D; combineReducers(&#123;<br>    counter: counterReducer,<br>    post: postReducer<br>&#125;);<br><br>export default rootReducers;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F; src&#x2F;store.js<br>&#x2F;&#x2F;合并 store<br><br>import &#123; createStore, compose, applyMiddleware &#125; from &#39;redux&#39;<br>import thunk from &#39;redux-thunk&#39;<br><br>import rootReducers from &#39;.&#x2F;reducers&#x2F;index&#39;<br><br>const store &#x3D; createStore(<br>    rootReducers,<br>    compose(<br>        applyMiddleware(...[thunk])<br>    ),<br>    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()<br>);<br><br>export default store;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F;引用 store<br>import store from &#39;.&#x2F;store&#39;<br><br>&#x2F;&#x2F;操作<br>import &#123; countAddAction &#125; from &#39;.&#x2F;actions&#x2F;counter_action&#39;<br>import &#123; loadPostsAction &#125; from &#39;.&#x2F;actions&#x2F;post_action&#39;<br><br>store.dispatch(countAddAction);<br>store.dispatch(loadPostsAction);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="在-react-使用-redux"><a href="#在-react-使用-redux" class="headerlink" title="在 react 使用 redux"></a>在 react 使用 redux</h2><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 需要安装插件</span><br><span class="hljs-meta">$</span><span class="bash"> yarn add react-redux</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">import React from &#39;react&#39;<br>import ReactDOM from &#39;react-dom&#39;<br>import &#123; Provider &#125; from &#39;react-redux&#39;<br><br>import App from &#39;.&#x2F;App&#39;<br><br>import store from &#39;.&#x2F;store&#39;<br><br>&#x2F;&#x2F; 使用 react-redux 的 Provider 元素把 &lt;App &#x2F;&gt; 包裹起来，这样所有的组件都可以使用 store 里面的数据<br>ReactDOM.render(&lt;Provider store&#x3D;&#123;store&#125;&gt;<br>    &lt;App &#x2F;&gt;<br>&lt;&#x2F;Provider&gt;, document.getElementById(&#39;root&#39;));<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F;使用 connect 组件根 redux 连接<br>import React, &#123; Component &#125; from &#39;react&#39;<br>import &#123; connect &#125; from &#39;react-redux&#39;<br>import &#123; loadPostsAction &#125; from &#39;..&#x2F;actions&#x2F;post_action&#39;<br><br>class PostList extends Component &#123;<br>    constructor(props) &#123;<br>        super(props);<br>        console.log(this.props);<br>    &#125;;<br>    componentDidMount() &#123;<br>        this.props.dispatch(loadPostsAction); &#x2F;&#x2F;加载远程数据<br>    &#125;;<br>    render() &#123;<br>        const &#123; list &#125; &#x3D; this.props.post;<br>        const Posts &#x3D; list.map(post&#x3D;&gt;&#123;<br>            return (&lt;li key&#x3D;&#123;post.id&#125;&gt;&#123;post.title&#125;&lt;&#x2F;li&gt;)<br>        &#125;)<br>        return (<br>            &lt; div &gt;<br>                &lt;ul&gt;&#123; Posts &#125;&lt;&#x2F;ul&gt;<br>            &lt;&#x2F;div &gt;<br>        );<br>    &#125;;<br>&#125;;<br><br>const mapStateToProps &#x3D; (state, ownProps) &#x3D;&gt; &#123;<br>    return &#123;<br>        post: state.post<br>    &#125;;<br>&#125;;<br><br>&#x2F;&#x2F; 通过 connect 连接组件和 redux 数据，传递 state 数据和 dispatch 方法<br>export default connect(mapStateToProps)(PostList);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>##</p>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git 基本指令</title>
     <url>/2020/05/04/git%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<p><strong>提交文件</strong></p>
@@ -43,16 +169,16 @@
 <p>以 Github 为例，配置 Github <a href="https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416" target="_blank" rel="noopener">廖雪峰 Git 教程</a></p>
 </blockquote>
 <p>配置密钥创建远程仓库后，关联远程仓库：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin git@你的 github 地址/仓库名.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ git remote add origin git@你的 github 地址/仓库名.git<br></code></pre></td></tr></table></figure>
 
 <p>推送到远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ git push -u origin master<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>以后想要推送到远程仓库只要 <code>git commit -m &quot;msg&quot;</code> 后 <code>git push</code> 就可以</p>
 </blockquote>
 <p>克隆仓库文件到本地</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:xxx/xxx.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ git <span class="hljs-built_in">clone</span> git@github.com:xxx/xxx.git<br></code></pre></td></tr></table></figure>
 
 <hr>
 <p><strong>分支操作</strong></p>
@@ -84,92 +210,6 @@
 ]]></content>
       <tags>
         <tag>计算机软件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redux, react-redux</title>
-    <url>/2020/05/07/redux/</url>
-    <content><![CDATA[<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><ul>
-<li><p>全局状态管理模块</p>
-</li>
-<li><p>管理组件之间传递的数据</p>
-</li>
-</ul>
-<p><strong>三个重要部分</strong></p>
-<ul>
-<li><p><code>action</code></p>
-</li>
-<li><p><code>reducer</code>：进行状态修改</p>
-</li>
-<li><p><code>state(store)</code>：存储数据的地方</p>
-</li>
-</ul>
-<blockquote>
-<p>dispatch 是派发的事件</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; createStore &#125; from &#39;redux&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; reducer</span><br><span class="line">const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;</span><br><span class="line">  return state</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; store</span><br><span class="line">const store &#x3D; createStore(counterReducer);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 如果需要改变一个 reducer 的值，需要使用 dispatch 派发一个 action</span><br><span class="line">&#x2F;&#x2F; action 需要两个参数</span><br><span class="line">&#x2F;&#x2F; 1. type    需要使用 type 区分对 state 做什么操作</span><br><span class="line">&#x2F;&#x2F; 2. payload 传递的数据</span><br><span class="line"></span><br><span class="line">const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#39;COUNT_ADD&#39;:</span><br><span class="line">      return &#123;</span><br><span class="line">        ...state, count: state.count + 1</span><br><span class="line">      &#125;;</span><br><span class="line">    case &#39;COUNT_REDUCE&#39;:</span><br><span class="line">      return &#123;</span><br><span class="line">        ...state, count: state.count - 1</span><br><span class="line">      &#125;;</span><br><span class="line">    default:</span><br><span class="line">      return state;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const store &#x3D; createStore(counterReducer);</span><br><span class="line"></span><br><span class="line">store.dispatch(&#123;</span><br><span class="line">  type: &#39;COUNT_ADD&#39;,</span><br><span class="line">  payload: &#123;&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">store.dispatch(&#123;</span><br><span class="line">  type: &#39;COUNT_REDUCE&#39;,</span><br><span class="line">  payload: &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用 chrome 插件查看状态</strong></p>
-<ul>
-<li>Redux DevTools</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const store &#x3D; createStore( </span><br><span class="line">    counterReducer</span><br><span class="line">    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>使用多个 reducer</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;使用 combineReducers</span><br><span class="line">import &#123; createStore, combineReducers &#125; from &#39;redux&#39;</span><br><span class="line"></span><br><span class="line">const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#39;COUNT_ADD&#39;:</span><br><span class="line">      return &#123;</span><br><span class="line">        ...state, count: state.count + 1</span><br><span class="line">      &#125;;</span><br><span class="line">    case &#39;COUNT_REDUCE&#39;:</span><br><span class="line">      return &#123;</span><br><span class="line">        ...state, count: state.count - 1</span><br><span class="line">      &#125;;</span><br><span class="line">    default:</span><br><span class="line">      return state;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const postReducer &#x3D; (state &#x3D; &#123; list: [&#123; title: &#39;你好！&#39; &#125;] &#125;, action) &#x3D;&gt; &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#39;LOAD_POST&#39;:</span><br><span class="line">      return &#123;</span><br><span class="line">        ...state, list: action.payload</span><br><span class="line">      &#125;;</span><br><span class="line">    default:</span><br><span class="line">      return state</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;通过 combineReducers 把多个 reducer 进行合并</span><br><span class="line">const rootReducers &#x3D; combineReducers(&#123;</span><br><span class="line">  counter: counterReducer,</span><br><span class="line">  post: postReducer</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const store &#x3D; createStore( </span><br><span class="line">    rootReducers,</span><br><span class="line">    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>redux 的网络请求</strong></p>
-<blockquote>
-<p>json holder：网站，会提供在线的 API</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> redux 使用 redux-thunk 插件进行网络请求</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yarn add redux-thunk </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yarn add axios</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 导入需要的插件</span><br><span class="line">import &#123; createStore, combineReducers, compose, applyMiddleware &#125; from &#39;redux&#39;</span><br><span class="line">import &#123; get &#125; from &#39;axios&#39;</span><br><span class="line">import thunk from &#39;redux-thunk&#39;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 配置 store</span><br><span class="line">const store &#x3D; createStore(</span><br><span class="line">    rootReducers,</span><br><span class="line">    compose(</span><br><span class="line">        applyMiddleware(...[thunk])  &#x2F;&#x2F;需要使用的中间件数组</span><br><span class="line">    ),</span><br><span class="line">    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const getPostsRequest &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    return get(&#39;https:&#x2F;&#x2F;xxx.com&#x2F;posts&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">store.dispatch(async (dispatch) &#x3D;&gt; &#123;</span><br><span class="line">    const res &#x3D; await getPostsRequest();</span><br><span class="line">    dispatch(&#123;</span><br><span class="line">        type: &#39;LOAD_POST&#39;,</span><br><span class="line">        payload: res.data</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>拆分代码，使其阅读更合理</strong></p>
-<ul>
-<li>在 src 文件夹下创建 actions 文件夹，把所有的 action 文件放在里面</li>
-<li>在 src 文件夹下创建 reducers 文件夹，把所有的 reducer 文件放在里面</li>
-<li>在 src 文件夹下创建 services 文件夹，把所有的关于网络请求得文件放在里面</li>
-<li>在根目录下创建 store.js 文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;services&#x2F;post_api.js</span><br><span class="line">import &#123; get &#125; from &#39;axios&#39;</span><br><span class="line"></span><br><span class="line">export function getPosts() &#123;</span><br><span class="line">    return get(&#39;https:&#x2F;&#x2F;xxx.com&#x2F;posts&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;actions&#x2F;counter_action.js</span><br><span class="line">export const countAddAction &#x3D; &#123;</span><br><span class="line">    type: &#39;COUNT_ADD&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const countReduceAction &#x3D; &#123;</span><br><span class="line">    type: &#39;COUNT_REDUCE&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;actions&#x2F;post_action.js</span><br><span class="line">import &#123; getPosts &#125; from &#39;..&#x2F;services&#x2F;post_api&#39;</span><br><span class="line"></span><br><span class="line">export const loadPostsAction &#x3D; async (dispatch) &#x3D;&gt; &#123;</span><br><span class="line">    const res &#x3D; await getPosts();</span><br><span class="line">    dispatch(&#123;</span><br><span class="line">        type: &#39;LOAD_POSTS&#39;,</span><br><span class="line">        payload: res.data</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;reducers&#x2F;post_reducer.js</span><br><span class="line">const postReducer &#x3D; (state &#x3D; &#123; list: [&#123; id: 1, title: &#39;你好！&#39; &#125;] &#125;, action) &#x3D;&gt; &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#39;LOAD_POST&#39;:</span><br><span class="line">            return &#123;</span><br><span class="line">                ...state, list: action.payload</span><br><span class="line">            &#125;;</span><br><span class="line">        default:</span><br><span class="line">            return state</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default postReducer;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;reducers&#x2F;counter_reducer.js</span><br><span class="line">const counterReducer &#x3D; (state &#x3D; &#123; count: 1 &#125;, action) &#x3D;&gt; &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#39;COUNT_ADD&#39;:</span><br><span class="line">            return &#123;</span><br><span class="line">                ...state, count: state.count + 1</span><br><span class="line">            &#125;;</span><br><span class="line">        case &#39;COUNT_REDUCE&#39;:</span><br><span class="line">            return &#123;</span><br><span class="line">                ...state, count: state.count - 1</span><br><span class="line">            &#125;;</span><br><span class="line">        default:</span><br><span class="line">            return state;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default counterReducer;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;reducers&#x2F;index.js</span><br><span class="line">&#x2F;&#x2F;合并 reducer</span><br><span class="line">import &#123; combineReducers &#125; from &#39;redux&#39;</span><br><span class="line"></span><br><span class="line">import counterReducer from &#39;.&#x2F;counter_reducer&#39;</span><br><span class="line">import postReducer from &#39;.&#x2F;post_reducer&#39;</span><br><span class="line"></span><br><span class="line">const rootReducers &#x3D; combineReducers(&#123;</span><br><span class="line">    counter: counterReducer,</span><br><span class="line">    post: postReducer</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default rootReducers;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;store.js</span><br><span class="line">&#x2F;&#x2F;合并 store</span><br><span class="line"></span><br><span class="line">import &#123; createStore, compose, applyMiddleware &#125; from &#39;redux&#39;</span><br><span class="line">import thunk from &#39;redux-thunk&#39;</span><br><span class="line"></span><br><span class="line">import rootReducers from &#39;.&#x2F;reducers&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">const store &#x3D; createStore(</span><br><span class="line">    rootReducers,</span><br><span class="line">    compose(</span><br><span class="line">        applyMiddleware(...[thunk])</span><br><span class="line">    ),</span><br><span class="line">    window.__REDUX_DEVTOOLS_EXTENSION_ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">export default store;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;引用 store</span><br><span class="line">import store from &#39;.&#x2F;store&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;操作</span><br><span class="line">import &#123; countAddAction &#125; from &#39;.&#x2F;actions&#x2F;counter_action&#39;</span><br><span class="line">import &#123; loadPostsAction &#125; from &#39;.&#x2F;actions&#x2F;post_action&#39;</span><br><span class="line"></span><br><span class="line">store.dispatch(countAddAction);</span><br><span class="line">store.dispatch(loadPostsAction);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="在-react-使用-redux"><a href="#在-react-使用-redux" class="headerlink" title="在 react 使用 redux"></a>在 react 使用 redux</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 需要安装插件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yarn add react-redux</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import React from &#39;react&#39;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;</span><br><span class="line">import &#123; Provider &#125; from &#39;react-redux&#39;</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;App&#39;</span><br><span class="line"></span><br><span class="line">import store from &#39;.&#x2F;store&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用 react-redux 的 Provider 元素把 &lt;App &#x2F;&gt; 包裹起来，这样所有的组件都可以使用 store 里面的数据</span><br><span class="line">ReactDOM.render(&lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">    &lt;App &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;Provider&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;使用 connect 组件根 redux 连接</span><br><span class="line">import React, &#123; Component &#125; from &#39;react&#39;</span><br><span class="line">import &#123; connect &#125; from &#39;react-redux&#39;</span><br><span class="line">import &#123; loadPostsAction &#125; from &#39;..&#x2F;actions&#x2F;post_action&#39;</span><br><span class="line"></span><br><span class="line">class PostList extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        console.log(this.props);</span><br><span class="line">    &#125;;</span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        this.props.dispatch(loadPostsAction); &#x2F;&#x2F;加载远程数据</span><br><span class="line">    &#125;;</span><br><span class="line">    render() &#123;</span><br><span class="line">        const &#123; list &#125; &#x3D; this.props.post;</span><br><span class="line">        const Posts &#x3D; list.map(post&#x3D;&gt;&#123;</span><br><span class="line">            return (&lt;li key&#x3D;&#123;post.id&#125;&gt;&#123;post.title&#125;&lt;&#x2F;li&gt;)</span><br><span class="line">        &#125;)</span><br><span class="line">        return (</span><br><span class="line">            &lt; div &gt;</span><br><span class="line">                &lt;ul&gt;&#123; Posts &#125;&lt;&#x2F;ul&gt;</span><br><span class="line">            &lt;&#x2F;div &gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const mapStateToProps &#x3D; (state, ownProps) &#x3D;&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        post: state.post</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过 connect 连接组件和 redux 数据，传递 state 数据和 dispatch 方法</span><br><span class="line">export default connect(mapStateToProps)(PostList);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>##</p>
-]]></content>
-      <tags>
-        <tag>前端</tag>
       </tags>
   </entry>
 </search>
