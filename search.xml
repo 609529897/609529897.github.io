@@ -212,4 +212,14 @@
         <tag>前端</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JS 比较对象是否相等</title>
+    <url>/2020/05/24/deepEqualFunc/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
 </search>
