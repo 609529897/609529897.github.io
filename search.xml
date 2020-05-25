@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JS 事件订阅模式实现</title>
+    <url>/2020/05/25/EventFuc/</url>
+    <content><![CDATA[<p><strong>事件订阅模式</strong></p>
+<p>你从淘宝上选购了一件衣服，但是你穿的尺码刚好断货，店员向你保证会上货。这时你对店员说当这件衣服有我尺码的时候给我发送信息（订阅 listen）。过了几天新货上架，店员通知了所有的订阅的用户新货上架了（发布trigger）。这就是事件订阅的逻辑了，当然你也可以取消订阅（取消订阅 remove）。下面代码是事件订阅模式的简单JS实现：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> Event = &#123;<br>    <span class="hljs-comment">// 存储订阅信息</span><br>    list: &#123;&#125;,<br>    <span class="hljs-comment">// 订阅</span><br>    listen: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.list[key]) &#123;<br>            <span class="hljs-keyword">this</span>.list[key] = []<br>        &#125;<br>        <span class="hljs-keyword">this</span>.list[key].push(fn)<br>    &#125;,<br>    <span class="hljs-comment">// 发布</span><br>    trigger: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">let</span> key = <span class="hljs-built_in">Array</span>.prototype.shift.call(<span class="hljs-built_in">arguments</span>)<br>        <span class="hljs-keyword">let</span> fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns || fns.length === <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, fn; fn = <span class="hljs-keyword">this</span>.list[i++];) &#123;<br>            fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 取消订阅</span><br>    remove: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns) &#123; <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> &#125;<br>        <span class="hljs-comment">// 没有指定对象，默认全取消</span><br>        <span class="hljs-keyword">if</span> (!fn) &#123;<br>            fns &amp;&amp; (fns.length = <span class="hljs-number">0</span>)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = fns.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> ;i--) &#123;<br>                <span class="hljs-keyword">if</span> (fns[i] === fn) &#123;<br>                    splice(i, <span class="hljs-number">1</span>)<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 给普通对象添加以上方法</span><br>    addEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> Event) &#123;<br>            obj[i] = Event[i]<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例</strong></p>
+<p>Ajax 请求</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 传统写法，代码就非常耦合</span><br>$.ajax(<span class="hljs-string">'http://127.0.0.1/index.php'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>    rendedData(data);  <span class="hljs-comment">// 渲染数据</span><br>    doAnimate(data);  <span class="hljs-comment">// 实现动画 </span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 事件订阅模式，实现代码的分离</span><br>$.ajax(“http:<span class="hljs-comment">//127.0.0.1/index.php”,function(data)&#123;</span><br>    Obj.trigger(<span class="hljs-string">'success'</span>,data);  <span class="hljs-comment">// 发布请求成功后的消息</span><br>&#125;);<br><span class="hljs-comment">// 下面我们来订阅此消息，比如我现在订阅渲染数据这个消息；</span><br>Obj.listen(<span class="hljs-string">'success'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>   renderData(data);<br>&#125;);<br><span class="hljs-comment">// 订阅动画这个消息</span><br>Obj.listen(<span class="hljs-string">'success'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>   doAnimate(data); <br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>模块间通信</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--订阅模式模块--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"global.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"count"</span>&gt;</span>click<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"showcount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span> = <span class="hljs-string">"a.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span> = <span class="hljs-string">"b.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// a.js</span><br><span class="hljs-keyword">let</span> a = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"count"</span>);<br>    button.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        Event.trigger(<span class="hljs-string">"add"</span>,count++);<br>    &#125;<br>&#125;)();<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// b.js</span><br><span class="hljs-keyword">let</span> b = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"showcount"</span>);<br>    Event.listen(<span class="hljs-string">'add'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">count</span>)</span>&#123;<br>        div.innerHTML = count;<br>    &#125;);<br>&#125;)();<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo 创建博客踩的坑</title>
+    <url>/2020/05/03/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E7%9A%84%E5%9D%91/</url>
+    <content><![CDATA[<p>​        第一次写博客那就吐槽一下用 hexo 创建博客踩的坑吧</p>
+<p>​        这尼玛如果在 source/_posts 目录下没有 .md 文件是不能 <code>hexo g</code> 创建 .html 静态文件的，废了老半天劲才</p>
+<p>发现。气死我了希望大家别踩我这坑了！（自动创建后有一个 hello_world.md 文件的，但我这人强迫症发作把它</p>
+<p>删了😀）</p>
+]]></content>
+      <tags>
+        <tag>吐槽</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Event Loop</title>
     <url>/2020/05/20/EventLoop/</url>
     <content><![CDATA[<p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
@@ -38,18 +75,6 @@
 ]]></content>
       <tags>
         <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo 创建博客踩的坑</title>
-    <url>/2020/05/03/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E7%9A%84%E5%9D%91/</url>
-    <content><![CDATA[<p>​        第一次写博客那就吐槽一下用 hexo 创建博客踩的坑吧</p>
-<p>​        这尼玛如果在 source/_posts 目录下没有 .md 文件是不能 <code>hexo g</code> 创建 .html 静态文件的，废了老半天劲才</p>
-<p>发现。气死我了希望大家别踩我这坑了！（自动创建后有一个 hello_world.md 文件的，但我这人强迫症发作把它</p>
-<p>删了😀）</p>
-]]></content>
-      <tags>
-        <tag>吐槽</tag>
       </tags>
   </entry>
   <entry>
@@ -124,6 +149,16 @@
 ]]></content>
       <tags>
         <tag>计算机软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS 比较对象是否相等</title>
+    <url>/2020/05/24/deepEqualFunc/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -207,16 +242,6 @@
 
 <hr>
 <p>##</p>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS 比较对象是否相等</title>
-    <url>/2020/05/24/deepEqualFunc/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 ]]></content>
       <tags>
         <tag>前端</tag>
