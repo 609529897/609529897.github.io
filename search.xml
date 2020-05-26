@@ -5,7 +5,7 @@
     <url>/2020/05/25/EventFuc/</url>
     <content><![CDATA[<p><strong>事件订阅模式</strong></p>
 <p>你从淘宝上选购了一件衣服，但是你穿的尺码刚好断货，店员向你保证会上货。这时你对店员说当这件衣服有我尺码的时候给我发送信息（订阅 listen）。过了几天新货上架，店员通知了所有的订阅的用户新货上架了（发布trigger）。这就是事件订阅的逻辑了，当然你也可以取消订阅（取消订阅 remove）。下面代码是事件订阅模式的简单JS实现：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> Event = &#123;<br>    <span class="hljs-comment">// 存储订阅信息</span><br>    list: &#123;&#125;,<br>    <span class="hljs-comment">// 订阅</span><br>    listen: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.list[key]) &#123;<br>            <span class="hljs-keyword">this</span>.list[key] = []<br>        &#125;<br>        <span class="hljs-keyword">this</span>.list[key].push(fn)<br>    &#125;,<br>    <span class="hljs-comment">// 发布</span><br>    trigger: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">let</span> key = <span class="hljs-built_in">Array</span>.prototype.shift.call(<span class="hljs-built_in">arguments</span>)<br>        <span class="hljs-keyword">let</span> fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns || fns.length === <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, fn; fn = <span class="hljs-keyword">this</span>.list[i++];) &#123;<br>            fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 取消订阅</span><br>    remove: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns) &#123; <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> &#125;<br>        <span class="hljs-comment">// 没有指定对象，默认全取消</span><br>        <span class="hljs-keyword">if</span> (!fn) &#123;<br>            fns &amp;&amp; (fns.length = <span class="hljs-number">0</span>)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = fns.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> ;i--) &#123;<br>                <span class="hljs-keyword">if</span> (fns[i] === fn) &#123;<br>                    splice(i, <span class="hljs-number">1</span>)<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 给普通对象添加以上方法</span><br>    addEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> Event) &#123;<br>            obj[i] = Event[i]<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> Event = &#123;<br>    <span class="hljs-comment">// 存储订阅信息</span><br>    list: &#123;&#125;,<br>    <span class="hljs-comment">// 订阅</span><br>    listen: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.list[key]) &#123;<br>            <span class="hljs-keyword">this</span>.list[key] = []<br>        &#125;<br>        <span class="hljs-keyword">this</span>.list[key].push(fn)<br>    &#125;,<br>    <span class="hljs-comment">// 发布</span><br>    trigger: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">let</span> key = <span class="hljs-built_in">Array</span>.prototype.shift.call(<span class="hljs-built_in">arguments</span>)<br>        <span class="hljs-keyword">let</span> fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns || fns.length === <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, fn; fn = <span class="hljs-keyword">this</span>.list[i++];) &#123;<br>            fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 取消订阅</span><br>    remove: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns) &#123; <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> &#125;<br>        <span class="hljs-comment">// 没有指定对象，默认全取消</span><br>        <span class="hljs-keyword">if</span> (!fn) &#123;<br>            fns &amp;&amp; (fns.length = <span class="hljs-number">0</span>)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = fns.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> ;i--) &#123;<br>                <span class="hljs-keyword">if</span> (fns[i] === fn) &#123;<br>                    fns.splice(i, <span class="hljs-number">1</span>)<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 给普通对象添加以上方法</span><br>    addEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> Event) &#123;<br>            obj[i] = Event[i]<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>示例</strong></p>
 <p>Ajax 请求</p>
@@ -20,6 +20,46 @@
 
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// b.js</span><br><span class="hljs-keyword">let</span> b = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"showcount"</span>);<br>    Event.listen(<span class="hljs-string">'add'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">count</span>)</span>&#123;<br>        div.innerHTML = count;<br>    &#125;);<br>&#125;)();<br></code></pre></td></tr></table></figure>
 
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Event Loop</title>
+    <url>/2020/05/20/EventLoop/</url>
+    <content><![CDATA[<p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
+<ul>
+<li><p>JS 是单线程语言，所以同一时间只能做一件事</p>
+</li>
+<li><p>如果进行异步操作，没有 Event loop 机制程序会一直等着完成异步操作而发生阻塞</p>
+</li>
+<li><p>异步操作：Promise、setTimeout、setInterval</p>
+</li>
+<li><p>可以使用 H5 的 Web Worker 进行多线程操作，但是流行</p>
+</li>
+</ul>
+<p>机制</p>
+<ul>
+<li><p>简言之就是 JS 只有一个主线程，主线程执行完执行栈的任务后去检查异步的任务队列，如果异步事件触发，则将其加到主线程的执行栈。</p>
+</li>
+<li><p>异步操作会放入异步的任务队列</p>
+</li>
+<li><p>异步操作又被分为 <code>宏任务</code> 和 <code>微任务</code> 来执行</p>
+</li>
+</ul>
+<p>任务队列</p>
+<ul>
+<li>宏任务：<code>setInterval</code>、<code>setTimeout</code></li>
+<li>微任务：<code>new Promise</code>、<code>MutaionObserver</code></li>
+</ul>
+<p>执行规则</p>
+<ul>
+<li><p>主线程同步操作 =&gt; 微任务 =&gt; 宏任务</p>
+</li>
+<li><p>第一步执行主线程的同步操作，第二步如果有微任务放入主线程执行没有的话去查看宏任务，最后当主线程和微任务检查和执行完毕后把宏任务放到主线程执行</p>
+</li>
+</ul>
 ]]></content>
       <tags>
         <tag>前端</tag>
@@ -107,46 +147,6 @@
 ]]></content>
       <tags>
         <tag>计算机软件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Event Loop</title>
-    <url>/2020/05/20/EventLoop/</url>
-    <content><![CDATA[<p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
-<ul>
-<li><p>JS 是单线程语言，所以同一时间只能做一件事</p>
-</li>
-<li><p>如果进行异步操作，没有 Event loop 机制程序会一直等着完成异步操作而发生阻塞</p>
-</li>
-<li><p>异步操作：Promise、setTimeout、setInterval</p>
-</li>
-<li><p>可以使用 H5 的 Web Worker 进行多线程操作，但是流行</p>
-</li>
-</ul>
-<p>机制</p>
-<ul>
-<li><p>简言之就是 JS 只有一个主线程，主线程执行完执行栈的任务后去检查异步的任务队列，如果异步事件触发，则将其加到主线程的执行栈。</p>
-</li>
-<li><p>异步操作会放入异步的任务队列</p>
-</li>
-<li><p>异步操作又被分为 <code>宏任务</code> 和 <code>微任务</code> 来执行</p>
-</li>
-</ul>
-<p>任务队列</p>
-<ul>
-<li>宏任务：<code>setInterval</code>、<code>setTimeout</code></li>
-<li>微任务：<code>new Promise</code>、<code>MutaionObserver</code></li>
-</ul>
-<p>执行规则</p>
-<ul>
-<li><p>主线程同步操作 =&gt; 微任务 =&gt; 宏任务</p>
-</li>
-<li><p>第一步执行主线程的同步操作，第二步如果有微任务放入主线程执行没有的话去查看宏任务，最后当主线程和微任务检查和执行完毕后把宏任务放到主线程执行</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
