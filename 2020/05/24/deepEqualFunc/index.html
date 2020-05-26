@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122const deepEqual &#x3D; (x, y) &#x3D;&gt; &amp;#123;  if (x &#x3D;&#x3D;&#x3D; y) &amp;#123;    return true  &amp;#125;  else if ((typeof x &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; x !&#x3D; null) &amp;&amp; (typeof y &#x3D;&#x3D;&#x3D; &quot;ob">
+<meta name="description" content="const deepEqual &#x3D; (x, y) &#x3D;&gt; &amp;#123;  if (x &#x3D;&#x3D;&#x3D; y) &amp;#123;    return true  &amp;#125;  else if ((typeof x &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; x !&#x3D; null) &amp;&amp; (typeof y &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; y !&#x3D; null)) &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS 比较对象是否相等">
 <meta property="og:url" content="https://609529897.github.io/2020/05/24/deepEqualFunc/index.html">
 <meta property="og:site_name" content="le&#39;s blog">
-<meta property="og:description" content="12345678910111213141516171819202122const deepEqual &#x3D; (x, y) &#x3D;&gt; &amp;#123;  if (x &#x3D;&#x3D;&#x3D; y) &amp;#123;    return true  &amp;#125;  else if ((typeof x &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; x !&#x3D; null) &amp;&amp; (typeof y &#x3D;&#x3D;&#x3D; &quot;ob">
+<meta property="og:description" content="const deepEqual &#x3D; (x, y) &#x3D;&gt; &amp;#123;  if (x &#x3D;&#x3D;&#x3D; y) &amp;#123;    return true  &amp;#125;  else if ((typeof x &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; x !&#x3D; null) &amp;&amp; (typeof y &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; y !&#x3D; null)) &amp;#123;">
 <meta property="article:published_time" content="2020-05-24T04:44:45.000Z">
-<meta property="article:modified_time" content="2020-05-24T04:45:55.203Z">
+<meta property="article:modified_time" content="2020-05-26T00:52:00.241Z">
 <meta property="article:author" content="le">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
@@ -160,7 +160,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">前端工程师</p>
+        <p class="site-subtitle">开发者</p>
       
   </div>
 
@@ -379,7 +379,7 @@
       
 
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+        <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
       
@@ -488,7 +488,7 @@
                 alt="le" />
             
               <p class="site-author-name" itemprop="name">le</p>
-              <p class="site-description motion-element" itemprop="description">...</p>
+              <p class="site-description motion-element" itemprop="description">ning1997@aliyun.com</p>
           </div>
 
           <nav class="site-state motion-element">

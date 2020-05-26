@@ -26,46 +26,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Event Loop</title>
-    <url>/2020/05/20/EventLoop/</url>
-    <content><![CDATA[<p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
-<ul>
-<li><p>JS 是单线程语言，所以同一时间只能做一件事</p>
-</li>
-<li><p>如果进行异步操作，没有 Event loop 机制程序会一直等着完成异步操作而发生阻塞</p>
-</li>
-<li><p>异步操作：Promise、setTimeout、setInterval</p>
-</li>
-<li><p>可以使用 H5 的 Web Worker 进行多线程操作，但是流行</p>
-</li>
-</ul>
-<p>机制</p>
-<ul>
-<li><p>简言之就是 JS 只有一个主线程，主线程执行完执行栈的任务后去检查异步的任务队列，如果异步事件触发，则将其加到主线程的执行栈。</p>
-</li>
-<li><p>异步操作会放入异步的任务队列</p>
-</li>
-<li><p>异步操作又被分为 <code>宏任务</code> 和 <code>微任务</code> 来执行</p>
-</li>
-</ul>
-<p>任务队列</p>
-<ul>
-<li>宏任务：<code>setInterval</code>、<code>setTimeout</code></li>
-<li>微任务：<code>new Promise</code>、<code>MutaionObserver</code></li>
-</ul>
-<p>执行规则</p>
-<ul>
-<li><p>主线程同步操作 =&gt; 微任务 =&gt; 宏任务</p>
-</li>
-<li><p>第一步执行主线程的同步操作，第二步如果有微任务放入主线程执行没有的话去查看宏任务，最后当主线程和微任务检查和执行完毕后把宏任务放到主线程执行</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS 比较对象是否相等</title>
     <url>/2020/05/24/deepEqualFunc/</url>
     <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -147,6 +107,46 @@
 ]]></content>
       <tags>
         <tag>计算机软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Event Loop</title>
+    <url>/2020/05/20/EventLoop/</url>
+    <content><![CDATA[<p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
+<ul>
+<li><p>JS 是单线程语言，所以同一时间只能做一件事</p>
+</li>
+<li><p>如果进行异步操作，没有 Event loop 机制程序会一直等着完成异步操作而发生阻塞</p>
+</li>
+<li><p>异步操作：Promise、setTimeout、setInterval</p>
+</li>
+<li><p>可以使用 H5 的 Web Worker 进行多线程操作，但是流行</p>
+</li>
+</ul>
+<p>机制</p>
+<ul>
+<li><p>简言之就是 JS 只有一个主线程，主线程执行完执行栈的任务后去检查异步的任务队列，如果异步事件触发，则将其加到主线程的执行栈。</p>
+</li>
+<li><p>异步操作会放入异步的任务队列</p>
+</li>
+<li><p>异步操作又被分为 <code>宏任务</code> 和 <code>微任务</code> 来执行</p>
+</li>
+</ul>
+<p>任务队列</p>
+<ul>
+<li>宏任务：<code>setInterval</code>、<code>setTimeout</code></li>
+<li>微任务：<code>new Promise</code>、<code>MutaionObserver</code></li>
+</ul>
+<p>执行规则</p>
+<ul>
+<li><p>主线程同步操作 =&gt; 微任务 =&gt; 宏任务</p>
+</li>
+<li><p>第一步执行主线程的同步操作，第二步如果有微任务放入主线程执行没有的话去查看宏任务，最后当主线程和微任务检查和执行完毕后把宏任务放到主线程执行</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
