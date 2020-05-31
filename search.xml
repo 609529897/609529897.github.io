@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>前端 Cache</title>
+    <url>/2020/05/30/Cache/</url>
+    <content><![CDATA[<h2 id="前端缓存-后端缓存"><a href="#前端缓存-后端缓存" class="headerlink" title="前端缓存/后端缓存"></a>前端缓存/后端缓存</h2><p>基本的网络请求分为三个步骤 <code>请求</code>、<code>处理</code>、<code>响应</code>。</p>
+<p>而后端缓存主要集中在 <code>处理</code> 步骤，通过保留数据库连接或者保存处理结果来缩短处理时间尽快进入“响应”步骤。</p>
+<p>而前端缓存那就集中在 <code>请求</code> 和 <code>响应</code> 步骤，响应需要跟后端共同配合。浏览器可以通过存储结果的方式省去发送</p>
+<p>请求的步骤，响应阶段可以减少响应内容来缩短传输时间。</p>
+<p><strong>缓存的分类</strong></p>
+<p>按缓存位置：</p>
+<ul>
+<li>memory cache  内存缓存</li>
+<li>disk cache          硬盘缓存</li>
+<li>Service Worker  Cache Storage</li>
+</ul>
+<p>按失效策略：</p>
+<ul>
+<li>强缓存                  Cache-Control, Expires</li>
+<li>协商缓存               Last-Modified &amp; If-Modified-Since, Etag &amp; If-None-Match</li>
+</ul>
+<p>Cache-Control 常用的值</p>
+<ul>
+<li><code>max-age</code>：即最大有效时间</li>
+<li><code>must-revalidate</code>：如果超过了 <code>max-age</code> 的时间，浏览器必须向服务器发送请求，验证资源是否还有效。</li>
+<li><code>no-cache</code>：虽然字面意思是“不要缓存”，但实际上还是要求客户端缓存内容的，只是是否使用这个内容由后续的对比来决定。</li>
+<li><code>no-store</code>: 真正意义上的“不要缓存”。所有内容都不走缓存，包括强制和对比。</li>
+<li><code>public</code>：所有的内容都可以被缓存 (包括客户端和代理服务器， 如 CDN)</li>
+<li><code>private</code>：所有的内容只有客户端才可以缓存，代理服务器不能缓存。默认值。</li>
+</ul>
+<blockquote>
+<p><strong>Cache-control 的优先级高于 Expires</strong>，为了兼容 HTTP/1.0 和 HTTP/1.1，实际项目中两个字段我们都会设置。</p>
+</blockquote>
+<p>当浏览器要请求资源时</p>
+<ol>
+<li><p>调用 Service Worker 的 <code>fetch</code> 事件响应</p>
+</li>
+<li><p>查看 memory cache</p>
+</li>
+<li><p>查看 disk cache。这里又细分：</p>
+</li>
+<li><ul>
+<li>如果有强制缓存且未失效，则使用强制缓存，不请求服务器。这时的状态码全部是 200</li>
+</ul>
+</li>
+<li><ul>
+<li>如果有强制缓存但已失效，使用对比缓存，比较后确定 304 还是 200</li>
+</ul>
+</li>
+<li><p>发送网络请求，等待网络响应</p>
+</li>
+<li><p>把响应内容存入 disk cache (如果 HTTP 头信息配置可以存的话)</p>
+</li>
+<li><p>把响应内容 <strong>的引用</strong> 存入 memory cache (无视 HTTP 头信息的配置)</p>
+</li>
+<li><p>把响应内容存入 Service Worker 的 Cache Storage (如果 Service Worker 的脚本调用了 <code>cache.put()</code>)</p>
+</li>
+</ol>
+<blockquote>
+<p>原文：<a href="https://zhuanlan.zhihu.com/p/44789005" target="_blank" rel="noopener">小蘑菇哥哥</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS 事件订阅模式实现</title>
     <url>/2020/05/25/EventFuc/</url>
     <content><![CDATA[<p><strong>事件订阅模式</strong></p>
