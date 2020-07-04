@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前端," />
+  <meta name="keywords" content="React," />
 
 
 
@@ -86,9 +86,9 @@
 <meta property="og:site_name" content="le&#39;s blog">
 <meta property="og:description" content="Redux 全局状态管理模块  管理组件之间传递的数据   三个重要部分  action  reducer：进行状态修改  state(store)：存储数据的地方    dispatch 是派发的事件  import &amp;#123; createStore &amp;#125; from &#39;redux&#39;&#x2F;&#x2F; reducerconst counterReducer &amp;#x">
 <meta property="article:published_time" content="2020-05-07T12:00:19.000Z">
-<meta property="article:modified_time" content="2020-05-07T12:01:30.299Z">
+<meta property="article:modified_time" content="2020-06-25T06:52:05.426Z">
 <meta property="article:author" content="le">
-<meta property="article:tag" content="前端">
+<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
 
 
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -456,7 +456,6 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs react">&#x2F;&#x2F;使用 connect 组件根 redux 连接<br>import React, &#123; Component &#125; from &#39;react&#39;<br>import &#123; connect &#125; from &#39;react-redux&#39;<br>import &#123; loadPostsAction &#125; from &#39;..&#x2F;actions&#x2F;post_action&#39;<br><br>class PostList extends Component &#123;<br>    constructor(props) &#123;<br>        super(props);<br>        console.log(this.props);<br>    &#125;;<br>    componentDidMount() &#123;<br>        this.props.dispatch(loadPostsAction); &#x2F;&#x2F;加载远程数据<br>    &#125;;<br>    render() &#123;<br>        const &#123; list &#125; &#x3D; this.props.post;<br>        const Posts &#x3D; list.map(post&#x3D;&gt;&#123;<br>            return (&lt;li key&#x3D;&#123;post.id&#125;&gt;&#123;post.title&#125;&lt;&#x2F;li&gt;)<br>        &#125;)<br>        return (<br>            &lt; div &gt;<br>                &lt;ul&gt;&#123; Posts &#125;&lt;&#x2F;ul&gt;<br>            &lt;&#x2F;div &gt;<br>        );<br>    &#125;;<br>&#125;;<br><br>const mapStateToProps &#x3D; (state, ownProps) &#x3D;&gt; &#123;<br>    return &#123;<br>        post: state.post<br>    &#125;;<br>&#125;;<br><br>&#x2F;&#x2F; 通过 connect 连接组件和 redux 数据，传递 state 数据和 dispatch 方法<br>export default connect(mapStateToProps)(PostList);<br></code></pre></td></tr></table></figure>
 
 <hr>
-<p>##</p>
 
       
     </div>
@@ -474,7 +473,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+            <a href="/tags/React/" rel="tag"># React</a>
           
         </div>
       
@@ -583,7 +582,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -596,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
