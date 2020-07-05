@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>垂直水平居中</title>
-    <url>/2020/07/04/Center/</url>
-    <content><![CDATA[<ol>
-<li>使用 <code>flex</code></li>
-</ol>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">justify-content</span>: center;<br>    <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>使用 <code>position</code>，<code>margin: auto;</code></li>
-</ol>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">margin</span>: auto;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>使用 <code>position</code>，<code>margin</code></li>
-</ol>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-comment">/*50px 是自己宽和高的一半距离*/</span><br>    <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">50px</span>; <br>    <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">50px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>使用 <code>position</code>，<code>transform: translate()</code></li>
-</ol>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-comment">/*translate 相对自己向左向上移动自己宽高的 50% 的距离*/</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端 Cache</title>
     <url>/2020/05/30/Cache/</url>
     <content><![CDATA[<h2 id="前端缓存-后端缓存"><a href="#前端缓存-后端缓存" class="headerlink" title="前端缓存/后端缓存"></a>前端缓存/后端缓存</h2><p>基本的网络请求分为三个步骤 <code>请求</code>、<code>处理</code>、<code>响应</code>。</p>
@@ -93,6 +65,157 @@
       </tags>
   </entry>
   <entry>
+    <title>Event Loop</title>
+    <url>/2020/05/20/EventLoop/</url>
+    <content><![CDATA[<p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
+<ul>
+<li><p>JS 是单线程语言，所以同一时间只能做一件事</p>
+</li>
+<li><p>如果进行异步操作，没有 Event loop 机制程序会一直等着完成异步操作而发生阻塞</p>
+</li>
+<li><p>异步操作：Promise、setTimeout、setInterval</p>
+</li>
+<li><p>可以使用 H5 的 Web Worker 进行多线程操作，但是流行</p>
+</li>
+</ul>
+<p>机制</p>
+<ul>
+<li><p>简言之就是 JS 只有一个主线程，主线程执行完执行栈的任务后去检查异步的任务队列，如果异步事件触发，则将其加到主线程的执行栈。</p>
+</li>
+<li><p>异步操作会放入异步的任务队列</p>
+</li>
+<li><p>异步操作又被分为 <code>宏任务</code> 和 <code>微任务</code> 来执行</p>
+</li>
+</ul>
+<p>任务队列</p>
+<ul>
+<li>宏任务：<code>setInterval</code>、<code>setTimeout</code></li>
+<li>微任务：<code>new Promise</code>、<code>MutaionObserver</code></li>
+</ul>
+<p>执行规则</p>
+<ul>
+<li><p>主线程同步操作 =&gt; 微任务 =&gt; 宏任务</p>
+</li>
+<li><p>第一步执行主线程的同步操作，第二步如果有微任务放入主线程执行没有的话去查看宏任务，最后当主线程和微任务检查和执行完毕后把宏任务放到主线程执行</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>垂直水平居中</title>
+    <url>/2020/07/04/Center/</url>
+    <content><![CDATA[<ol>
+<li>使用 <code>flex</code></li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">justify-content</span>: center;<br>    <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用 <code>position</code>，<code>margin: auto;</code></li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">margin</span>: auto;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用 <code>position</code>，<code>margin</code></li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-comment">/*50px 是自己宽和高的一半距离*/</span><br>    <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">50px</span>; <br>    <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">50px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用 <code>position</code>，<code>transform: translate()</code></li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.wrapper</span> &gt; <span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">background</span>: blue;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-comment">/*translate 相对自己向左向上移动自己宽高的 50% 的距离*/</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS 事件订阅模式实现</title>
+    <url>/2020/05/25/EventFuc/</url>
+    <content><![CDATA[<p><strong>事件订阅模式</strong></p>
+<p>你从淘宝上选购了一件衣服，但是你穿的尺码刚好断货，店员向你保证会上货。这时你对店员说当这件衣服有我尺码的时候给我发送信息（订阅 listen）。过了几天新货上架，店员通知了所有的订阅的用户新货上架了（发布trigger）。这就是事件订阅的逻辑了，当然你也可以取消订阅（取消订阅 remove）。下面代码是事件订阅模式的简单JS实现：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> Event = &#123;<br>    <span class="hljs-comment">// 存储订阅信息</span><br>    list: &#123;&#125;,<br>    <span class="hljs-comment">// 订阅</span><br>    listen: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.list[key]) &#123;<br>            <span class="hljs-keyword">this</span>.list[key] = []<br>        &#125;<br>        <span class="hljs-keyword">this</span>.list[key].push(fn)<br>    &#125;,<br>    <span class="hljs-comment">// 发布</span><br>    trigger: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">let</span> key = <span class="hljs-built_in">Array</span>.prototype.shift.call(<span class="hljs-built_in">arguments</span>)<br>        <span class="hljs-keyword">let</span> fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns || fns.length === <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, fn; fn = <span class="hljs-keyword">this</span>.list[i++];) &#123;<br>            fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 取消订阅</span><br>    remove: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns) &#123; <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> &#125;<br>        <span class="hljs-comment">// 没有指定对象，默认全取消</span><br>        <span class="hljs-keyword">if</span> (!fn) &#123;<br>            fns &amp;&amp; (fns.length = <span class="hljs-number">0</span>)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = fns.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> ;i--) &#123;<br>                <span class="hljs-keyword">if</span> (fns[i] === fn) &#123;<br>                    fns.splice(i, <span class="hljs-number">1</span>)<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 给普通对象添加以上方法</span><br>    addEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> Event) &#123;<br>            obj[i] = Event[i]<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例</strong></p>
+<p>Ajax 请求</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 传统写法，代码就非常耦合</span><br>$.ajax(<span class="hljs-string">'http://127.0.0.1/index.php'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>    rendedData(data);  <span class="hljs-comment">// 渲染数据</span><br>    doAnimate(data);  <span class="hljs-comment">// 实现动画 </span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 事件订阅模式，实现代码的分离</span><br>$.ajax(“http:<span class="hljs-comment">//127.0.0.1/index.php”,function(data)&#123;</span><br>    Obj.trigger(<span class="hljs-string">'success'</span>,data);  <span class="hljs-comment">// 发布请求成功后的消息</span><br>&#125;);<br><span class="hljs-comment">// 下面我们来订阅此消息，比如我现在订阅渲染数据这个消息；</span><br>Obj.listen(<span class="hljs-string">'success'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>   renderData(data);<br>&#125;);<br><span class="hljs-comment">// 订阅动画这个消息</span><br>Obj.listen(<span class="hljs-string">'success'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>   doAnimate(data); <br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>模块间通信</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--订阅模式模块--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"global.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"count"</span>&gt;</span>click<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"showcount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span> = <span class="hljs-string">"a.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span> = <span class="hljs-string">"b.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// a.js</span><br><span class="hljs-keyword">let</span> a = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"count"</span>);<br>    button.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        Event.trigger(<span class="hljs-string">"add"</span>,count++);<br>    &#125;<br>&#125;)();<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// b.js</span><br><span class="hljs-keyword">let</span> b = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"showcount"</span>);<br>    Event.listen(<span class="hljs-string">'add'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">count</span>)</span>&#123;<br>        div.innerHTML = count;<br>    &#125;);<br>&#125;)();<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo 创建博客踩的坑</title>
+    <url>/2020/05/03/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E7%9A%84%E5%9D%91/</url>
+    <content><![CDATA[<p>​        第一次写博客那就吐槽一下用 hexo 创建博客踩的坑吧</p>
+<p>​        这尼玛如果在 source/_posts 目录下没有 .md 文件是不能 <code>hexo g</code> 创建 .html 静态文件的，废了老半天劲才</p>
+<p>发现。气死我了希望大家别踩我这坑了！（自动创建后有一个 hello_world.md 文件的，但我这人强迫症发作把它</p>
+<p>删了😀）</p>
+]]></content>
+      <tags>
+        <tag>吐槽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跨域</title>
+    <url>/2020/07/05/cross-domain/</url>
+    <content><![CDATA[<blockquote>
+<p>跨域是不可能靠前端单方面解决的，不管是怎么解决，都需要服务端的支持</p>
+</blockquote>
+<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><blockquote>
+<p><strong>同源策略</strong>限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</p>
+<p>————————《MDN web docs》</p>
+</blockquote>
+<p>那按照同源策略，不同源的是不能进行请求等操作的，那什么样的是同源，什么样的又不是同源呢（我想从事前端的小伙伴多多少少应该都应该知道）；<br>只要满足<strong>协议、主机、端口</strong>一致，则两个页面具有相同的源。</p>
+<h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>原理：利用 <code>src</code> 和 <code>href</code> 属性可以进行跨域请求的特性，动态添加 <code>script</code> 标签和回调函数实现跨域，只能用在 GET 请求</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>JSONP<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="actionscript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span><span class="hljs-params">(data)</span> </span>&#123;</span><br><span class="javascript">      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`我叫<span class="hljs-subst">$&#123;data&#125;</span>`</span>);</span><br><span class="javascript">      <span class="hljs-keyword">let</span> jsonpScript = <span class="hljs-built_in">document</span>.getElementsByClassName(<span class="hljs-string">'jsonpScript'</span>)[<span class="hljs-number">0</span>];</span><br><span class="javascript">      <span class="hljs-built_in">document</span>.body.removeChild(jsonpScript);</span><br>    &#125;<br><span class="actionscript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jsonpRequest</span><span class="hljs-params">(callback)</span> </span>&#123;</span><br><span class="javascript">      <span class="hljs-keyword">let</span> jsonpScript = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>);</span><br><span class="javascript">      jsonpScript.src = <span class="hljs-string">`http://www.hello.com/jsonp/js/index.js?callback=<span class="hljs-subst">$&#123;callback&#125;</span>`</span>;</span><br><span class="actionscript">      jsonpScript.className = <span class="hljs-string">'jsonpScript'</span>;</span><br><span class="javascript">      <span class="hljs-built_in">document</span>.body.appendChild(jsonpScript);</span><br>    &#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"jsonpRequest('print')"</span>&gt;</span>发个JSONP请求<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// jsonp/js/index.js</span><br>print(&#123;<br>    name: <span class="hljs-string">'jerry'</span>,<br>  &#125;)<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>CORS 方法的全称是 Cross-origin resource sharing，中文名叫“跨域资源共享”。</p>
+<p><strong>简单请求</strong></p>
+<p>简单请求的几个条件：</p>
+<ol>
+<li>请求方法为 HEAD、GET 或者 POST 中的一种</li>
+<li>HTTP的头信息不超过以下几种字段<code>Accept</code>、<code>Accept-Language</code>、<code>Content-Language</code>、<code>Last-Event-ID</code></li>
+<li><code>Content-Type</code>的值只限于<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>、<code>text/plain</code>三个  </li>
+</ol>
+<p>从浏览器发出请求的时候，浏览器会自动在请求头中添加一个字段 <code>Origin：源地址</code> ，服务端根据这个值，决定是否同意这次请求，如果<code>Origin</code>的值不在指定的许可范围，服务端返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段，就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。 如果Access-Control-Allow-Origin字段正好跟带过去的<code>Origin</code>的值一样，则返回对应的数据，完成一次请求。。</p>
+<p><strong>非简单请求以及<code>option</code>请求</strong></p>
+<p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是<code>PUT</code>或<code>DELETE</code>，或者<code>Content-Type</code>字段的类型是<code>application/json</code>。在进行非简单请求之前，浏览器会在正式请求之前发送一次预检请求，这就是有时候我们会在控制台中看到的<code>option</code>请求，就是说，正式请求之前，浏览器会去问服务端我这个地址能不能访问你，如果可以，浏览器才会发送正式的请求，否则报错。</p>
+<p><strong>总结</strong></p>
+<p>总的来说，CORS实现跨域的方法就是根据请求头的<code>Origin</code>值和响应头的<code>Access-Control-Request-Headers</code>和<code>Access-Control-Request-Method</code>的值进行比对，通过了就可以请求成功，没通过就请求失败。</p>
+<hr>
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>原理：同源策略只适用于客户端向服务端发送请求，而代理模式是服务端向服务端发送请求</p>
+<p><strong>node 反向代理</strong></p>
+<p>如果我们用的是node起的前端服务，那我们可以使用node来直接进行反向代理</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http-proxy-middleware'</span>);<span class="hljs-comment">//1.0.0版本前都是用proxy,1.0.0后使用porxy会报错,应使用createProxyMiddleware;</span><br><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">app</span>) </span>&#123;<br>  app.use(<br>    createProxyMiddleware(<br>      <span class="hljs-string">'/api'</span>,<br>      &#123;<br>        target: <span class="hljs-string">'http://v.juhe.cn'</span>,<br>        pathRewrite: &#123; <span class="hljs-string">'^/api'</span>: <span class="hljs-string">''</span> &#125;,<br>        changeOrigin: <span class="hljs-literal">true</span>,     <span class="hljs-comment">// target是域名的话，需要这个参数，</span><br>        secure: <span class="hljs-literal">false</span>,<br>      &#125;<br>    )<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>nginx 反向代理</strong></p>
+<p>…</p>
+<p><strong>正向代理 / 反向代理</strong></p>
+<p>正向代理，清楚的知道是那个服务器返回的数据</p>
+<p>反向代理，不清楚是那个服务器返回的数据，因为数据是从多个服务器获取的</p>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>React 组件通信</title>
     <url>/2020/06/19/TX/</url>
     <content><![CDATA[<p>四种情况：</p>
@@ -144,81 +267,6 @@
 ]]></content>
       <tags>
         <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS 事件订阅模式实现</title>
-    <url>/2020/05/25/EventFuc/</url>
-    <content><![CDATA[<p><strong>事件订阅模式</strong></p>
-<p>你从淘宝上选购了一件衣服，但是你穿的尺码刚好断货，店员向你保证会上货。这时你对店员说当这件衣服有我尺码的时候给我发送信息（订阅 listen）。过了几天新货上架，店员通知了所有的订阅的用户新货上架了（发布trigger）。这就是事件订阅的逻辑了，当然你也可以取消订阅（取消订阅 remove）。下面代码是事件订阅模式的简单JS实现：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> Event = &#123;<br>    <span class="hljs-comment">// 存储订阅信息</span><br>    list: &#123;&#125;,<br>    <span class="hljs-comment">// 订阅</span><br>    listen: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.list[key]) &#123;<br>            <span class="hljs-keyword">this</span>.list[key] = []<br>        &#125;<br>        <span class="hljs-keyword">this</span>.list[key].push(fn)<br>    &#125;,<br>    <span class="hljs-comment">// 发布</span><br>    trigger: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">let</span> key = <span class="hljs-built_in">Array</span>.prototype.shift.call(<span class="hljs-built_in">arguments</span>)<br>        <span class="hljs-keyword">let</span> fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns || fns.length === <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, fn; fn = <span class="hljs-keyword">this</span>.list[i++];) &#123;<br>            fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 取消订阅</span><br>    remove: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, fn</span>) </span>&#123;<br>        fns = <span class="hljs-keyword">this</span>.list[key]<br>        <span class="hljs-keyword">if</span> (!fns) &#123; <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> &#125;<br>        <span class="hljs-comment">// 没有指定对象，默认全取消</span><br>        <span class="hljs-keyword">if</span> (!fn) &#123;<br>            fns &amp;&amp; (fns.length = <span class="hljs-number">0</span>)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = fns.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> ;i--) &#123;<br>                <span class="hljs-keyword">if</span> (fns[i] === fn) &#123;<br>                    fns.splice(i, <span class="hljs-number">1</span>)<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 给普通对象添加以上方法</span><br>    addEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> Event) &#123;<br>            obj[i] = Event[i]<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>示例</strong></p>
-<p>Ajax 请求</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 传统写法，代码就非常耦合</span><br>$.ajax(<span class="hljs-string">'http://127.0.0.1/index.php'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>    rendedData(data);  <span class="hljs-comment">// 渲染数据</span><br>    doAnimate(data);  <span class="hljs-comment">// 实现动画 </span><br>&#125;);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 事件订阅模式，实现代码的分离</span><br>$.ajax(“http:<span class="hljs-comment">//127.0.0.1/index.php”,function(data)&#123;</span><br>    Obj.trigger(<span class="hljs-string">'success'</span>,data);  <span class="hljs-comment">// 发布请求成功后的消息</span><br>&#125;);<br><span class="hljs-comment">// 下面我们来订阅此消息，比如我现在订阅渲染数据这个消息；</span><br>Obj.listen(<span class="hljs-string">'success'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>   renderData(data);<br>&#125;);<br><span class="hljs-comment">// 订阅动画这个消息</span><br>Obj.listen(<span class="hljs-string">'success'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>   doAnimate(data); <br>&#125;);<br></code></pre></td></tr></table></figure>
-
-<p>模块间通信</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--订阅模式模块--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"global.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"count"</span>&gt;</span>click<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"showcount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span> = <span class="hljs-string">"a.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span> = <span class="hljs-string">"b.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// a.js</span><br><span class="hljs-keyword">let</span> a = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"count"</span>);<br>    button.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        Event.trigger(<span class="hljs-string">"add"</span>,count++);<br>    &#125;<br>&#125;)();<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// b.js</span><br><span class="hljs-keyword">let</span> b = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"showcount"</span>);<br>    Event.listen(<span class="hljs-string">'add'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">count</span>)</span>&#123;<br>        div.innerHTML = count;<br>    &#125;);<br>&#125;)();<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Event Loop</title>
-    <url>/2020/05/20/EventLoop/</url>
-    <content><![CDATA[<p>Event Loop 是为了 JS 进行异步操作时避免发生阻塞而设计的事件机制。</p>
-<ul>
-<li><p>JS 是单线程语言，所以同一时间只能做一件事</p>
-</li>
-<li><p>如果进行异步操作，没有 Event loop 机制程序会一直等着完成异步操作而发生阻塞</p>
-</li>
-<li><p>异步操作：Promise、setTimeout、setInterval</p>
-</li>
-<li><p>可以使用 H5 的 Web Worker 进行多线程操作，但是流行</p>
-</li>
-</ul>
-<p>机制</p>
-<ul>
-<li><p>简言之就是 JS 只有一个主线程，主线程执行完执行栈的任务后去检查异步的任务队列，如果异步事件触发，则将其加到主线程的执行栈。</p>
-</li>
-<li><p>异步操作会放入异步的任务队列</p>
-</li>
-<li><p>异步操作又被分为 <code>宏任务</code> 和 <code>微任务</code> 来执行</p>
-</li>
-</ul>
-<p>任务队列</p>
-<ul>
-<li>宏任务：<code>setInterval</code>、<code>setTimeout</code></li>
-<li>微任务：<code>new Promise</code>、<code>MutaionObserver</code></li>
-</ul>
-<p>执行规则</p>
-<ul>
-<li><p>主线程同步操作 =&gt; 微任务 =&gt; 宏任务</p>
-</li>
-<li><p>第一步执行主线程的同步操作，第二步如果有微任务放入主线程执行没有的话去查看宏任务，最后当主线程和微任务检查和执行完毕后把宏任务放到主线程执行</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS 比较对象是否相等</title>
-    <url>/2020/05/24/deepEqualFunc/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -296,15 +344,25 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo 创建博客踩的坑</title>
-    <url>/2020/05/03/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E7%9A%84%E5%9D%91/</url>
-    <content><![CDATA[<p>​        第一次写博客那就吐槽一下用 hexo 创建博客踩的坑吧</p>
-<p>​        这尼玛如果在 source/_posts 目录下没有 .md 文件是不能 <code>hexo g</code> 创建 .html 静态文件的，废了老半天劲才</p>
-<p>发现。气死我了希望大家别踩我这坑了！（自动创建后有一个 hello_world.md 文件的，但我这人强迫症发作把它</p>
-<p>删了😀）</p>
+    <title>使用 React Hooks 实现 赞/踩 功能</title>
+    <url>/2020/07/04/zc/</url>
+    <content><![CDATA[<figure class="highlight jsx"><table><tr><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useReducer, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span><br><span class="hljs-keyword">import</span> &#123; render &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">'./app.css'</span><br><br><span class="hljs-keyword">const</span> App = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> appReducer = <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">switch</span> (action.type) &#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">'HANDLE_LIKE'</span>:<br>        <span class="hljs-keyword">return</span> &#123;<br>          ...state,<br>          countLikes: state.countLikes + action.payload<br>        &#125;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">'HANDLE_DISLIKE'</span>:<br>        <span class="hljs-keyword">return</span> &#123;<br>          ...state,<br>          countDislikes: state.countDislikes + action.payload<br>        &#125;<br>      <span class="hljs-keyword">default</span>:<br>        <span class="hljs-keyword">return</span> state<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">const</span> initailState = &#123;<br>    countLikes: <span class="hljs-number">65</span>,<br>    countDislikes: <span class="hljs-number">5</span>,<br>  &#125;<br>  <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(appReducer, initailState)<br>  <span class="hljs-keyword">const</span> &#123; countLikes, countDislikes &#125; = state<br>  <span class="hljs-keyword">const</span> [status, setStatus] = useState(<span class="hljs-literal">null</span>)<br>  <span class="hljs-keyword">const</span> handleClickLike = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'like'</span>) &#123;<br>      setStatus(<span class="hljs-literal">null</span>)<br>      dispatch(&#123;<br>        type: <span class="hljs-string">'HANDLE_LIKE'</span>,<br>        payload: <span class="hljs-number">-1</span>,<br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      setStatus(<span class="hljs-string">'like'</span>)<br>      <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'dislike'</span>) &#123;<br>        dispatch(&#123;<br>          type: <span class="hljs-string">'HANDLE_DISLIKE'</span>,<br>          payload: <span class="hljs-number">-1</span>,<br>        &#125;)<br>      &#125;<br>      dispatch(&#123;<br>        type: <span class="hljs-string">'HANDLE_LIKE'</span>,<br>        payload: <span class="hljs-number">1</span>,<br>      &#125;)<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">const</span> handleClickDisLike = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'dislike'</span>) &#123;<br>      setStatus(<span class="hljs-literal">null</span>)<br>      dispatch(&#123;<br>        type: <span class="hljs-string">"HANDLE_DISLIKE"</span>,<br>        payload: <span class="hljs-number">-1</span>,<br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      setStatus(<span class="hljs-string">'dislike'</span>)<br>      <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'like'</span>) &#123;<br>        dispatch(&#123;<br>          type: <span class="hljs-string">'HANDLE_LIKE'</span>,<br>          payload: <span class="hljs-number">-1</span><br>        &#125;)<br>      &#125;<br>      dispatch(&#123;<br>        type: <span class="hljs-string">'HANDLE_DISLIKE'</span>,<br>        payload: <span class="hljs-number">1</span>,<br>      &#125;)<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> (<br>    &lt;div className=<span class="hljs-string">"container"</span>&gt;<br>      &lt;button className=&#123;status === <span class="hljs-string">'like'</span> ? <span class="hljs-string">'btn active'</span> : <span class="hljs-string">'btn'</span>&#125; onClick=&#123;handleClickLike&#125;&gt;<br>        赞<br>  &lt;span&gt;&#123;countLikes&#125;&lt;<span class="hljs-regexp">/span&gt;</span><br><span class="hljs-regexp">      &lt;/</span>button&gt;<br>      &lt;button className=&#123;status === <span class="hljs-string">'dislike'</span> ? <span class="hljs-string">'btn active'</span> : <span class="hljs-string">'btn'</span>&#125; onClick=&#123;handleClickDisLike&#125;&gt;<br>        踩<br>  &lt;span&gt;&#123;countDislikes&#125;&lt;<span class="hljs-regexp">/span&gt;</span><br><span class="hljs-regexp">      &lt;/</span>button&gt;<br>    &lt;<span class="hljs-regexp">/div&gt;</span><br><span class="hljs-regexp">  )</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">render(&lt;App /</span>&gt;, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#root'</span>))<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span>&#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><br><span class="hljs-selector-class">.btn</span> &#123;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>  <span class="hljs-attribute">border</span>: none;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0px</span> <span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;<br>  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">background-color</span>: transparent;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#74777d</span>;<br>  <span class="hljs-attribute">outline</span>: none;<br>&#125;<br><br><span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:first-of-type</span>&#123;<br>  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#74777d</span>;<br>&#125;<br><br><span class="hljs-selector-class">.btn</span><span class="hljs-selector-pseudo">:hover</span>&#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#282a2e</span>;<br>&#125;<br><br><span class="hljs-selector-tag">span</span> &#123;<br>  <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">6px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.active</span>, <span class="hljs-selector-class">.active</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#1b81f5</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
-        <tag>吐槽</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS 比较对象是否相等</title>
+    <url>/2020/05/24/deepEqualFunc/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepEqual = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (x === y) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"object"</span> &amp;&amp; x != <span class="hljs-literal">null</span>) &amp;&amp; (<span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"object"</span> &amp;&amp; y != <span class="hljs-literal">null</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(x).length != <span class="hljs-built_in">Object</span>.keys(y).length) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> prop <span class="hljs-keyword">in</span> x) &#123;<br>      <span class="hljs-keyword">if</span> (y.hasOwnProperty(prop)) &#123;<br>        <span class="hljs-keyword">if</span> (!deepEqual(x[prop], y[prop])) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -315,6 +373,41 @@
 ]]></content>
       <tags>
         <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>防抖，节流</title>
+    <url>/2020/06/21/throttle-debounce/</url>
+    <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="函数防抖（debounce）"><a href="#函数防抖（debounce）" class="headerlink" title="函数防抖（debounce）"></a>函数防抖（debounce）</h3><p>当一个动作连续触发，则只执行最后一次</p>
+<h3 id="函数节流（throttle）"><a href="#函数节流（throttle）" class="headerlink" title="函数节流（throttle）"></a>函数节流（throttle）</h3><p>一个动作在一段时间内只能执行一次</p>
+<h2 id="常见应用场景"><a href="#常见应用场景" class="headerlink" title="常见应用场景"></a>常见应用场景</h2><h3 id="函数防抖的应用场景"><a href="#函数防抖的应用场景" class="headerlink" title="函数防抖的应用场景"></a>函数防抖的应用场景</h3><p>连续的事件，只需触发一次回调的场景有：</p>
+<ul>
+<li>搜索框搜索输入。只需用户最后一次输入完，再发送请求</li>
+<li>手机号、邮箱验证输入检测</li>
+<li>窗口大小Resize。只需窗口调整完成后，计算窗口大小。防止重复渲染。</li>
+</ul>
+<h3 id="函数节流的应用场景"><a href="#函数节流的应用场景" class="headerlink" title="函数节流的应用场景"></a>函数节流的应用场景</h3><p>间隔一段时间执行一次回调的场景有：</p>
+<ul>
+<li>滚动加载，加载更多或滚到底部监听</li>
+<li>谷歌搜索框，搜索联想功能</li>
+<li>高频点击提交，表单重复提交</li>
+</ul>
+<h2 id="实现原理及代码封装"><a href="#实现原理及代码封装" class="headerlink" title="实现原理及代码封装"></a>实现原理及代码封装</h2><p>以页面元素滚动监听的例子，来进行解析：</p>
+<p><strong>函数节流：规定延迟时间（delay）内只执行最开始触发的函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 函数节流</span><br><span class="hljs-keyword">let</span> canRun = <span class="hljs-literal">true</span>;<br><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'scroll'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-comment">// 判断是否已空闲，如果在执行中，则直接return</span><br>    <span class="hljs-keyword">if</span>(!canRun) <span class="hljs-keyword">return</span>;<br>    canRun = <span class="hljs-literal">false</span>;<br>    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"函数节流"</span>);<br>        canRun = <span class="hljs-literal">true</span>;<br>    &#125;, <span class="hljs-number">300</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>封装一下后是这样的：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> throttle = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn,delay</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> canRun = <span class="hljs-literal">true</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">this</span><br>    <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">arguments</span>;<br>        <span class="hljs-keyword">if</span>(!canRun) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 注意，这里不能用timer来做标记，因为setTimeout会返回一个定时器id</span><br>        canRun = <span class="hljs-literal">false</span>;<br>    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>        fn.apply(context,args) <br>        canRun = <span class="hljs-literal">true</span>;<br>    &#125;,delay)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>函数防抖：上个函数在规定延迟时间（delay）内未开始执行就接连触发的函数只执行最后触发的函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 函数防抖</span><br><span class="hljs-keyword">let</span> timer = <span class="hljs-literal">false</span>;<br><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'scroll'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    clearTimeout(timer); <span class="hljs-comment">// 清除未执行的代码，重置回初始化状态</span><br>    timer = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"函数防抖"</span>);<br>    &#125;, <span class="hljs-number">300</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>封装一下是这样的：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> debounce = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, delay</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">this</span><br>    <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">arguments</span><br>    clearTimeout(timer) <span class="hljs-comment">// 每次调用debounce函数都会将前一次的timer清空，确保只执行一次</span><br>    timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>      fn.apply(context, args)<br>    &#125;, delay)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -400,53 +493,6 @@
 ]]></content>
       <tags>
         <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 React Hooks 实现 赞/踩 功能</title>
-    <url>/2020/07/04/zc/</url>
-    <content><![CDATA[<figure class="highlight jsx"><table><tr><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useReducer, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span><br><span class="hljs-keyword">import</span> &#123; render &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">'./app.css'</span><br><br><span class="hljs-keyword">const</span> App = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> appReducer = <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">switch</span> (action.type) &#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">'HANDLE_LIKE'</span>:<br>        <span class="hljs-keyword">return</span> &#123;<br>          ...state,<br>          countLikes: state.countLikes + action.payload<br>        &#125;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">'HANDLE_DISLIKE'</span>:<br>        <span class="hljs-keyword">return</span> &#123;<br>          ...state,<br>          countDislikes: state.countDislikes + action.payload<br>        &#125;<br>      <span class="hljs-keyword">default</span>:<br>        <span class="hljs-keyword">return</span> state<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">const</span> initailState = &#123;<br>    countLikes: <span class="hljs-number">65</span>,<br>    countDislikes: <span class="hljs-number">5</span>,<br>  &#125;<br>  <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(appReducer, initailState)<br>  <span class="hljs-keyword">const</span> &#123; countLikes, countDislikes &#125; = state<br>  <span class="hljs-keyword">const</span> [status, setStatus] = useState(<span class="hljs-literal">null</span>)<br>  <span class="hljs-keyword">const</span> handleClickLike = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'like'</span>) &#123;<br>      setStatus(<span class="hljs-literal">null</span>)<br>      dispatch(&#123;<br>        type: <span class="hljs-string">'HANDLE_LIKE'</span>,<br>        payload: <span class="hljs-number">-1</span>,<br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      setStatus(<span class="hljs-string">'like'</span>)<br>      <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'dislike'</span>) &#123;<br>        dispatch(&#123;<br>          type: <span class="hljs-string">'HANDLE_DISLIKE'</span>,<br>          payload: <span class="hljs-number">-1</span>,<br>        &#125;)<br>      &#125;<br>      dispatch(&#123;<br>        type: <span class="hljs-string">'HANDLE_LIKE'</span>,<br>        payload: <span class="hljs-number">1</span>,<br>      &#125;)<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">const</span> handleClickDisLike = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'dislike'</span>) &#123;<br>      setStatus(<span class="hljs-literal">null</span>)<br>      dispatch(&#123;<br>        type: <span class="hljs-string">"HANDLE_DISLIKE"</span>,<br>        payload: <span class="hljs-number">-1</span>,<br>      &#125;)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      setStatus(<span class="hljs-string">'dislike'</span>)<br>      <span class="hljs-keyword">if</span> (status === <span class="hljs-string">'like'</span>) &#123;<br>        dispatch(&#123;<br>          type: <span class="hljs-string">'HANDLE_LIKE'</span>,<br>          payload: <span class="hljs-number">-1</span><br>        &#125;)<br>      &#125;<br>      dispatch(&#123;<br>        type: <span class="hljs-string">'HANDLE_DISLIKE'</span>,<br>        payload: <span class="hljs-number">1</span>,<br>      &#125;)<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> (<br>    &lt;div className=<span class="hljs-string">"container"</span>&gt;<br>      &lt;button className=&#123;status === <span class="hljs-string">'like'</span> ? <span class="hljs-string">'btn active'</span> : <span class="hljs-string">'btn'</span>&#125; onClick=&#123;handleClickLike&#125;&gt;<br>        赞<br>  &lt;span&gt;&#123;countLikes&#125;&lt;<span class="hljs-regexp">/span&gt;</span><br><span class="hljs-regexp">      &lt;/</span>button&gt;<br>      &lt;button className=&#123;status === <span class="hljs-string">'dislike'</span> ? <span class="hljs-string">'btn active'</span> : <span class="hljs-string">'btn'</span>&#125; onClick=&#123;handleClickDisLike&#125;&gt;<br>        踩<br>  &lt;span&gt;&#123;countDislikes&#125;&lt;<span class="hljs-regexp">/span&gt;</span><br><span class="hljs-regexp">      &lt;/</span>button&gt;<br>    &lt;<span class="hljs-regexp">/div&gt;</span><br><span class="hljs-regexp">  )</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">render(&lt;App /</span>&gt;, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#root'</span>))<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span>&#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><br><span class="hljs-selector-class">.btn</span> &#123;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>  <span class="hljs-attribute">border</span>: none;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0px</span> <span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;<br>  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">background-color</span>: transparent;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#74777d</span>;<br>  <span class="hljs-attribute">outline</span>: none;<br>&#125;<br><br><span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:first-of-type</span>&#123;<br>  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#74777d</span>;<br>&#125;<br><br><span class="hljs-selector-class">.btn</span><span class="hljs-selector-pseudo">:hover</span>&#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#282a2e</span>;<br>&#125;<br><br><span class="hljs-selector-tag">span</span> &#123;<br>  <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">6px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.active</span>, <span class="hljs-selector-class">.active</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#1b81f5</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>防抖，节流</title>
-    <url>/2020/06/21/throttle-debounce/</url>
-    <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="函数防抖（debounce）"><a href="#函数防抖（debounce）" class="headerlink" title="函数防抖（debounce）"></a>函数防抖（debounce）</h3><p>当一个动作连续触发，则只执行最后一次</p>
-<h3 id="函数节流（throttle）"><a href="#函数节流（throttle）" class="headerlink" title="函数节流（throttle）"></a>函数节流（throttle）</h3><p>一个动作在一段时间内只能执行一次</p>
-<h2 id="常见应用场景"><a href="#常见应用场景" class="headerlink" title="常见应用场景"></a>常见应用场景</h2><h3 id="函数防抖的应用场景"><a href="#函数防抖的应用场景" class="headerlink" title="函数防抖的应用场景"></a>函数防抖的应用场景</h3><p>连续的事件，只需触发一次回调的场景有：</p>
-<ul>
-<li>搜索框搜索输入。只需用户最后一次输入完，再发送请求</li>
-<li>手机号、邮箱验证输入检测</li>
-<li>窗口大小Resize。只需窗口调整完成后，计算窗口大小。防止重复渲染。</li>
-</ul>
-<h3 id="函数节流的应用场景"><a href="#函数节流的应用场景" class="headerlink" title="函数节流的应用场景"></a>函数节流的应用场景</h3><p>间隔一段时间执行一次回调的场景有：</p>
-<ul>
-<li>滚动加载，加载更多或滚到底部监听</li>
-<li>谷歌搜索框，搜索联想功能</li>
-<li>高频点击提交，表单重复提交</li>
-</ul>
-<h2 id="实现原理及代码封装"><a href="#实现原理及代码封装" class="headerlink" title="实现原理及代码封装"></a>实现原理及代码封装</h2><p>以页面元素滚动监听的例子，来进行解析：</p>
-<p><strong>函数节流：规定延迟时间（delay）内只执行最开始触发的函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 函数节流</span><br><span class="hljs-keyword">let</span> canRun = <span class="hljs-literal">true</span>;<br><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'scroll'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-comment">// 判断是否已空闲，如果在执行中，则直接return</span><br>    <span class="hljs-keyword">if</span>(!canRun) <span class="hljs-keyword">return</span>;<br>    canRun = <span class="hljs-literal">false</span>;<br>    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"函数节流"</span>);<br>        canRun = <span class="hljs-literal">true</span>;<br>    &#125;, <span class="hljs-number">300</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
-
-<p><strong>封装一下后是这样的：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> throttle = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn,delay</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> canRun = <span class="hljs-literal">true</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">this</span><br>    <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">arguments</span>;<br>        <span class="hljs-keyword">if</span>(!canRun) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 注意，这里不能用timer来做标记，因为setTimeout会返回一个定时器id</span><br>        canRun = <span class="hljs-literal">false</span>;<br>    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>        fn.apply(context,args) <br>        canRun = <span class="hljs-literal">true</span>;<br>    &#125;,delay)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>函数防抖：上个函数在规定延迟时间（delay）内未开始执行就接连触发的函数只执行最后触发的函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 函数防抖</span><br><span class="hljs-keyword">let</span> timer = <span class="hljs-literal">false</span>;<br><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'scroll'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    clearTimeout(timer); <span class="hljs-comment">// 清除未执行的代码，重置回初始化状态</span><br>    timer = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"函数防抖"</span>);<br>    &#125;, <span class="hljs-number">300</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
-
-<p><strong>封装一下是这样的：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> debounce = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, delay</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">this</span><br>    <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">arguments</span><br>    clearTimeout(timer) <span class="hljs-comment">// 每次调用debounce函数都会将前一次的timer清空，确保只执行一次</span><br>    timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>      fn.apply(context, args)<br>    &#125;, delay)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>前端</tag>
       </tags>
   </entry>
 </search>
